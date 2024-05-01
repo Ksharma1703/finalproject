@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_login/flutter_login.dart';
 
+import '../website/dashboardscreen.dart';
 import '../website/user_list_screen.dart';
 import 'faderoute.dart';
 
@@ -51,7 +52,7 @@ class _LoginSignupState extends State<LoginSignup> {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
-      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+      // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       navigateBackAfterRecovery: true,
       title: '',
       logo: const AssetImage('assets/icon3.png'),
@@ -96,19 +97,19 @@ class _LoginSignupState extends State<LoginSignup> {
         return _signupUser(signupData);
       },
       onSubmitAnimationCompleted: () {
-        if (Platform.isAndroid) {
-          Navigator.of(context).pushReplacement(
-            FadePageRoute(
-              builder: (context) => DetailsScreen(),
-            ),
-          );
-        } else {
-          Navigator.of(context).pushReplacement(
-            FadePageRoute(
-              builder: (context) => WebsiteDashboard(),
-            ),
-          );
-        }
+        // if (!Platform.isAndroid) {
+        //   Navigator.of(context).pushReplacement(
+        //     FadePageRoute(
+        //       builder: (context) => DetailsScreen(),
+        //     ),
+        //   );
+        // } else {
+        Navigator.of(context).pushReplacement(
+          FadePageRoute(
+            builder: (context) => UserDetailsScreen(),
+          ),
+        );
+        //  }
       },
       onRecoverPassword: (name) {
         debugPrint('Recover password info');
